@@ -28,6 +28,7 @@ public class ProductoService {
     public Productos actualizarProducto(Long id, Productos productoActualizado ){
         Productos productoExistente = productoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado con ID: " + id));
 
+        
         productoExistente.setNombre(productoActualizado.getNombre());
         productoExistente.setDescripcion(productoActualizado.getDescripcion());
         productoExistente.setPrecio(productoActualizado.getPrecio());
