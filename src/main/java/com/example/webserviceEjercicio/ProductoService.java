@@ -18,7 +18,7 @@ public class ProductoService {
         return productoRepository.findAll();
     }
 
-    public Optional <Productos> infoProducto(Long id){
+    public Optional <Productos> infoProducto(String id){
         return productoRepository.findById(id);
     }
 
@@ -26,7 +26,7 @@ public class ProductoService {
         return productoRepository.save(nuevoProducto);
     }
 
-    public Productos actualizarProducto(Long id, Productos productoActualizado ){
+    public Productos actualizarProducto(String id, Productos productoActualizado ){
         Productos productoExistente = productoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado con ID: " + id));
 
         
@@ -38,7 +38,7 @@ public class ProductoService {
         return productoRepository.save(productoExistente);
     }
 
-    public void eliminarProducto(Long id){
+    public void eliminarProducto(String id){
         productoRepository.deleteById(id);
     }
 

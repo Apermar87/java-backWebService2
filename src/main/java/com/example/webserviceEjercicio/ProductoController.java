@@ -19,7 +19,7 @@ public class ProductoController {
     }
 
     @GetMapping("/obtenerProductosId")
-    public Optional <Productos> obtenerProductosId(@RequestParam("id") Long id){
+    public Optional <Productos> obtenerProductosId(@RequestParam("id") String id){
         return productoService.infoProducto(id);
     }
 
@@ -29,13 +29,13 @@ public class ProductoController {
     }
 
     @PutMapping("/modificarProducto/{id}")
-    public Productos modificarProducto(@PathVariable Long id, @RequestBody Productos productoModificado){
+    public Productos modificarProducto(@PathVariable String id, @RequestBody Productos productoModificado){
         Productos productoActualizado = productoService.actualizarProducto(id, productoModificado);
         return productoActualizado;
     }
 
     @DeleteMapping("/borrarProducto/{id}")
-    public void borrarProducto(@PathVariable Long id){
+    public void borrarProducto(@PathVariable String id){
         productoService.eliminarProducto(id);
     }
 }
