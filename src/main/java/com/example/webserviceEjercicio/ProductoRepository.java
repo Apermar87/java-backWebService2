@@ -1,7 +1,7 @@
 package com.example.webserviceEjercicio;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ProductoRepository extends JpaRepository<Productos, Long> {
-
+public interface ProductoRepository extends MongoRepository<Productos, String> {
 }
+
