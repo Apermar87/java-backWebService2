@@ -16,25 +16,23 @@ public class GlobalExceptionHandler {
 
     // Recurso no encontrado
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleResourceNotFoundException(ResourceNotFoundException ex) {
-        Map<String, Object> response = new HashMap<>();
-        response.put("timestamp", LocalDateTime.now());
-        response.put("status", HttpStatus.NOT_FOUND.value());
-        response.put("error", "Not Found");
-        response.put("message", ex.getMessage());
-
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    public ResponseEntity<Map<String, Object>> handleResourceNotFoundException(ResourceNotFoundException excepcion) {
+        return buildResponse(HttpStatus.NOT_FOUND, "Not found", excepcion.getMessage());
     }
 
-    // Errores de validación o datos incorrectos
+    // Excepción para peticiones inválidas
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<Map<String, Object>> handleBadRequestException(BadRequestException ex) {
+    public ResponseEntity<Map<String, Object>> handleBadRequestException(BadRequestException excepcion) {
+        return buildResponse(HttpStatus.BAD_REQUEST, "Bad request", excepcion.getMessage());
+    }
+
+
+    private ResponseEntity<Map<String, Object>> buildResponse(HttpStatus estado, String error, String mensaje) {
         Map<String, Object> response = new HashMap<>();
         response.put("timestamp", LocalDateTime.now());
-        response.put("status", HttpStatus.BAD_REQUEST.value());
-        response.put("error", "Bad Request");
-        response.put("message", ex.getMessage());
-
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        response.put("status", estado.value());
+        response.put("error", error);
+        response.put("message", mensaje);
+        return new ResponseEntity<>(response, estado);
     }
 }
