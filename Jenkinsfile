@@ -2,10 +2,8 @@ pipeline {
     agent {
         docker {
             image 'openjdk:22-slim'
+            args '--user root'
         }
-    }
-    environment {
-        MAVEN_HOME = '/usr/share/maven'
     }
     stages {
         stage('Checkout') {
@@ -15,12 +13,8 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'java -version' // Para verificar la versión de Java
                 sh 'mvn clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
             }
         }
     }
