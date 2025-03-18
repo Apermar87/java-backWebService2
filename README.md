@@ -1,4 +1,4 @@
-# Web Service CRUD - Spring Boot & MongoDB
+# Web Service CRUD Application - Spring Boot & MongoDB
 
 Este proyecto es una aplicación RESTful desarrollada con Spring Boot que implementa un CRUD (Crear, Leer, Actualizar, Eliminar) para gestionar productos almacenados en una base de datos MongoDB. Se han realizado pruebas unitarias con Junit & Mockito. Se ha utilizado Docker para la contenerización, Swagger para la documentación de la API y SonarQube para el análisis de calidad de código.
 
